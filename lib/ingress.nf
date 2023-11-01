@@ -311,7 +311,7 @@ process bamstats {
     | bgzip > bamstats_results/bamstats.readstats.tsv.gz
 
     # extract the run IDs from the per-read stats
-    csvtk cut -tf runid bamstats_results/bamstats.readstats.tsv.gz \
+    csvtk cut -tf read_id bamstats_results/bamstats.readstats.tsv.gz \
     | csvtk del-header | sort | uniq > bamstats_results/run_ids
     """
 }
@@ -458,7 +458,7 @@ process fastcat {
             | bgzip > $out
 
         # extract the run IDs from the per-read stats
-        csvtk cut -tf runid $fastcat_stats_outdir/per-read-stats.tsv.gz \
+        csvtk cut -tf read_id $fastcat_stats_outdir/per-read-stats.tsv.gz \
         | csvtk del-header | sort | uniq > $fastcat_stats_outdir/run_ids
         """
 }
